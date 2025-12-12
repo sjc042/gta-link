@@ -40,10 +40,12 @@ Our method is model-agnostic, meaning it operates independently of the tracking 
 <!-- TODO: add image to showcase a tracklet containing multiple identity -->
 <!-- TODO: add clustering feature visualization -->
 
+<img src="demo_media/splitter.png" alt="Splitter" width="600">
 The tracklet splitter addresses the issue of impure tracklets that contain multiple identities. It utilizes unsupervised density-based spatial clustering, [DBSCAN](https://cdn.aaai.org/KDD/1996/KDD96-037.pdf), to cluster the instances within a tracklet based on their deep feature embeddings and to detect if there is an ID switch.
 
 ### Tracklet Connector
 
+<img src="demo_media/connector.png" alt="Connector" width="600">
 After the splitter processes the tracklets, the connector component iteratively merges tracklet pairs based on their averaged cosine distance between all tracklet instances' deep feature embeddings.
 
 ## Application
@@ -82,12 +84,20 @@ This refinement tool helps enhance tracking results from any tracker for an MOT 
         ```bash
         pip install torchreid
         ```
-    - Option 2:
-    Open the reid folder and install torchreid (project tested on torchreid 1.4.0)
-        ```bash
-        cd reid
-        python setup.py develop
-        ```
+   - Option 2:
+     Open the reid folder and install torchreid (project tested on torchreid 1.4.0)
+       ```bash
+       cd reid
+       python setup.py develop
+       ```
+     **Note:** To run `python setup.py develop` successfully, you must use  
+     **setuptools < 60** (e.g., `setuptools==59.8.0`).  
+     Newer versions of setuptools remove the `setup.py develop` functionality.
+   
+       ```bash
+       pip install "setuptools==59.8.0"
+       ```
+
     - Option 3:
     In project folder, creat folder 'reid', then clone torchreid repository to local machine for the newest version of torchreid
         ```bash
